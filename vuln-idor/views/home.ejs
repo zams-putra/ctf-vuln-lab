@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      :root {
+        --gelap: #27374d;
+        --cerah: #dde6ed;
+      }
+
+      body {
+        background-color: var(--gelap);
+        color: var(--cerah);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+
+      h1 {
+        background: linear-gradient(to right, skyblue, var(--cerah));
+        color: transparent;
+        background-clip: text;
+      }
+
+      img {
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        animation: ilangan 3s infinite ease;
+      }
+
+      @keyframes ilangan {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/profile/<%= id %>">
+      <img src="<%= image %>" alt="username" />
+    </a>
+    <h1>Hello <%= username %></h1>
+    <p>How r u today, how s it goin, are you okay sir ^^</p>
+  </body>
+</html>
