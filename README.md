@@ -64,3 +64,35 @@ http://localhost:5000
 <br>
 <br>
 <br>
+
+### Linux Privilege escalation and bruteforce SSH
+
+- submit flag is not available in here
+- linux only i think
+
+<br>
+<br>
+
+1. clone repo
+
+```bash
+docker pull hopkinserstomba/ctf-vuln-pe
+```
+
+2. run image
+
+```bash
+docker run -p 2222:22 8888:80 hopkinserstomba/ctf-vuln-pe
+```
+
+3. open browser
+
+```bash
+http://localhost:8888
+```
+
+<br>
+<br>
+<br>
+
+### Soon
