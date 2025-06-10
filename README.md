@@ -82,7 +82,7 @@ docker pull hopkinserstomba/ctf-vuln-pe
 2. run image
 
 ```bash
-docker run -p 2222:22 8888:80 hopkinserstomba/ctf-vuln-pe
+docker run -p 2222:22 -p 8888:80 hopkinserstomba/ctf-vuln-pe
 ```
 
 3. open browser
