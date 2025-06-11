@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      :root {
+        --gelap: #222831;
+        --cerah: #eeeeee;
+        --primary: #ffd369;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        gap: 3rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      h1 {
+        background: linear-gradient(to right, var(--primary), var(--cerah));
+        color: transparent;
+        -webkit-background-clip: text;
+        animation: fade 5s ease;
+      }
+      .logout {
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+      }
+
+      button {
+        padding: 1rem 1.5rem;
+        background-color: var(--primary);
+        color: var(--gelap);
+        border: none;
+        border-radius: 0.2rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: var(--cerah);
+        color: #1e2022;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/resp/logout"><button class="logout">Logout</button></a>
+    <h1>FLAG{N0_W4Y}</h1>
+  </body>
+</html>

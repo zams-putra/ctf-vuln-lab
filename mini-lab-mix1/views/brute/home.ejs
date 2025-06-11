@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello guys</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #161a30;
+        color: #f0ece5;
+        padding: 2rem;
+      }
+      header {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      h2 {
+        margin-top: 4rem;
+      }
+      img {
+        border-radius: 0.3rem;
+        width: 15rem;
+        margin: 2rem auto;
+      }
+
+      form {
+        width: 50%;
+        margin: 3rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2>Can you help Mr.Nasgor to find his password account?🤖</h2>
+      <img src="/img/mr_nasgor.webp" alt="mr_nasgor" />
+      <em
+        >Hello, Im <strong>nasgor</strong>. <br />i forgot my password account
+        right now<br />
+        i have takin a notes for my password <br />umm... source code ?? <br />i
+        dont know... i cant remember for now <br />
+        but i lost my notes in somewhere... <br />
+        can you help me please</em
+      >
+    </header>
+    <!-- your notes is on /my-notes -->
+
+    <form action="/bruteforce/login" method="post">
+      <% if (isLogin) { %>
+      <span style="color: red"><%= isLogin %></span>
+      <% } %>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" />
+
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>
