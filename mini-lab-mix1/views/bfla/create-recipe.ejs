@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      /* credentials */
+      /* username: rocky */
+      /* password: rocky123 */
+
+      :root {
+        --gelap: #2c3333;
+        --cerah: #e7f6f2;
+        --primary: #a5c9ca;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      h1 {
+        background: linear-gradient(to right, var(--primary), var(--cerah));
+        color: transparent;
+        -webkit-background-clip: text;
+      }
+
+      form {
+        display: flex;
+        width: 20vw;
+        min-height: 30vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        background-color: var(--primary);
+        color: var(--gelap);
+      }
+
+      form div {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      form div input {
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        border: none;
+        background-color: var(--cerah);
+        color: var(--gelap);
+      }
+
+      form button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
+        border: none;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-weight: bold;
+        transition: all ease 0.3s;
+        cursor: pointer;
+      }
+
+      form button:hover {
+        background-color: var(--cerah);
+        color: var(--gelap);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FLAG{H0W_Y0U_KN0W_TH4T}</h1>
+    <form class="form" action="/bfla/create-recipe" method="post">
+      <div>
+        <label for="name">Name</label>
+        <input required type="text" id="name" name="name" />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea
+          rows="5"
+          required
+          id="description"
+          name="description"
+        ></textarea>
+      </div>
+      <button type="submit">Create</button>
+    </form>
+
+    <script>
+      const form = document.querySelector(".form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.querySelector("#name").value;
+        const description = document.querySelector("#description").value;
+
+        const response = await fetch(
+          "http://localhost:5000/bfla/create-recipe",
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              description,
+            }),
+          }
+        );
+
+        if (response.ok) {
+          window.location.href = "/bfla/dashboard";
+        } else {
+          alert("Something wrong");
+        }
+      });
+    </script>
+  </body>
+</html>

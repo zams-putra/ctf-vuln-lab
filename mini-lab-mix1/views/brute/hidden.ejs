@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #161a30;
+        color: #f0ece5;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      .correct {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Submit Flag</h1>
+    <p>Congratulation</p>
+    <p>submit ur flag:</p>
+    <em>FLAG{NasgorPassFlag404}</em>
+    <% if (msg) { %>
+    <p class="<%= msg.includes('Correct') ? 'correct' : 'wrong' %>">
+      <%= msg %>
+    </p>
+    <% } %>
+    <p>Point: <%= point %></p>
+    <form action="/bruteforce/flag" method="post">
+      <input type="text" name="flag" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>

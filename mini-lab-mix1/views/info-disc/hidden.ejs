@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      .correct {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Submit Flag</h1>
+    <% if (msgId) { %>
+    <p class="<%= msgId.includes('Correct') ? 'correct' : 'wrong' %>">
+      <%= msgId %>
+    </p>
+    <% } %>
+    <p>Point: <%= pointId %></p>
+    <form action="/info-disc/flag" method="post">
+      <input type="text" name="flag" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
