@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 2rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      .correct {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+
+      img {
+        width: 15rem;
+        border-radius: 0.8rem;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Submit Flag</h1>
+    <% if (msg) { %>
+    <p class="<%= msg.includes('Correct') ? 'correct' : 'wrong' %>">
+      <%= msg %>
+    </p>
+    <% } %>
+    <p>Point: <%= point %></p>
+    <form action="/exif/flag" method="post">
+      <input type="text" name="flag" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
