@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #0d0d0d;
+        color: #00ff88;
+        font-family: "Courier New", monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .box {
+        background-color: #1a1a1a;
+        border: 2px solid #00ff88;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        max-width: 600px;
+        width: 90%;
+      }
+
+      h1 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+
+      .creds {
+        background: #000;
+        padding: 1rem;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        color: #fff;
+      }
+
+      .creds code {
+        color: #00ff88;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>Welcome, bakwan jagung.</h1>
+      <p>You have successfully bypassed the login via SQL Injection.</p>
+      <p class="creds">
+        <strong>Mysql server Credentials:</strong><br />
+        <code>owner_db:myown_myrule</code>
+      </p>
+      <p>Try connecting via <code>mysql</code> and escalate privileges.</p>
+    </div>
+  </body>
+</html>
