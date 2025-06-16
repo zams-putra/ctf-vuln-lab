@@ -9,6 +9,7 @@ import resp from "./routes/resp.js";
 import infodisc from "./routes/infodisc.js";
 import exif from "./routes/exif.js";
 import xss from "./routes/xss.js";
+import cookieManip from "./routes/cookiemanip.js";
 
 import * as path from "path";
 
@@ -68,5 +69,8 @@ app.use("/exif", exif);
 
 // xss
 app.use("/xss", xss);
+
+// cookie manipulation
+app.use("/cookiemanip", cookieManip);
 
 app.listen(5000, () => console.log(`run started on http://localhost:5000`));
