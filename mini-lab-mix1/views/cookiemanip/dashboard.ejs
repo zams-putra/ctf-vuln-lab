@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background-color: #0f172a;
+        color: #f1f5f9;
+      }
+
+      header {
+        background-color: #1e293b;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      header h1 {
+        font-size: 1.25rem;
+        margin: 0;
+      }
+
+      nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: #f1f5f9;
+
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        padding: 2rem;
+      }
+
+      .card {
+        background-color: #1e293b;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        color: #e2e8f0;
+      }
+
+      .card p {
+        margin: 0;
+        color: #94a3b8;
+      }
+
+      .but {
+        padding: 1rem 2rem;
+        background-color: #0f172a;
+        color: #e2e8f0;
+        border-radius: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Dashboard Page</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Get Flag</a>
+        <a href="#">These are a Disabled link HAHAHA</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2>Welcome, admin.</h2>
+      </div>
+
+      <div class="card">
+        <h2>Challenge Info</h2>
+        <% if (hiddenLink) { %>
+        <p>
+          🎯 You are authorized.
+          <a href="/cookiemanip/flag"
+            ><button class="but">Click here to get the flag.</button></a
+          >
+        </p>
+        <% } else { %>
+        <p>Hello hello sir, are you okay mr <%= cookieVal %></p>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>
