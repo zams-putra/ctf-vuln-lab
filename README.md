@@ -17,6 +17,7 @@
 - Information disclosure
 - EXIF data leak
 - XSS cookie stealer
+- Cookie manipulation
 
 <br>
 <br>
