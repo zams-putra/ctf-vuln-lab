@@ -105,4 +105,34 @@ http://localhost:8888
 <br>
 <br>
 
+## SQL Injection bypass login + privilege escalation (BETA)
+
+- i've never try this before
+- so give it a try
+
+<br>
+<br>
+
+1. clone repo
+
+```bash
+docker pull hopkinserstomba/ctf-vuln-sqli
+```
+
+2. run image
+
+```bash
+docker run -p 2222:22 -p 5000:5000 hopkinserstomba/ctf-vuln-sqli
+```
+
+3. open browser
+
+```bash
+http://localhost:5000
+```
+
+<br>
+<br>
+<br>
+
 ## Soon
