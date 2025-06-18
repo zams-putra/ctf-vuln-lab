@@ -7,7 +7,7 @@ import * as path from "path";
 const app = express();
 
 const conn = mysql.createConnection({
-  host: "localhost",
+  host: "127.0.0.1",
   user: "owner_db",
   password: "myown_myrule",
   database: "dbngawur",

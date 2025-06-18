@@ -92,13 +92,43 @@ docker pull hopkinserstomba/ctf-vuln-pe
 2. run image
 
 ```bash
-docker run -p 2222:22 8888:80 hopkinserstomba/ctf-vuln-pe
+docker run -p 2222:22 -p 8888:80 hopkinserstomba/ctf-vuln-pe
 ```
 
 3. open browser
 
 ```bash
 http://localhost:8888
+```
+
+<br>
+<br>
+<br>
+
+## SQL Injection bypass login + privilege escalation (BETA)
+
+- i've never try this before
+- so give it a try
+
+<br>
+<br>
+
+1. clone repo
+
+```bash
+docker pull hopkinserstomba/ctf-vuln-sqli
+```
+
+2. run image
+
+```bash
+docker run -p 2222:22 -p 5000:5000 hopkinserstomba/ctf-vuln-sqli
+```
+
+3. open browser
+
+```bash
+http://localhost:5000
 ```
 
 <br>

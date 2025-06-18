@@ -2,4 +2,3 @@ Port 22
 PermitRootLogin no
 PasswordAuthentication yes
 ChallengeResponseAuthentication no
-UsePAM yes
