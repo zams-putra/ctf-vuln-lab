@@ -1,14 +1,29 @@
-# My small CTF Machine collection with docker
+# Welcome to my Labs 🍔
+
+### Hope you enjoy it 🦖☠️🤖
+
+There is so many Categories in here so give it a try
 
 <br>
 <br>
 <br>
+<br>
+<br>
 
-## Mini CTF Lab mix - 1
+# 1. Web Exploitation - Lab 🕸️
 
 <br>
 
-### Bug :
+## My small CTF Machine collection with docker
+
+<br>
+<br>
+
+### Mini CTF Lab mix - 1
+
+<br>
+
+#### Bug :
 
 - Bruteforce login page
 - Broken function level authorization (BFLA)
@@ -75,6 +90,10 @@ http://localhost:5000
 <br>
 <br>
 
+# 2. General - Lab 🌐
+
+<br>
+
 ## Linux Privilege escalation and bruteforce SSH
 
 - submit flag is not available in here
@@ -135,4 +154,58 @@ http://localhost:5000
 <br>
 <br>
 
-## Soon
+# 3. Binary Exploitation - Lab 🍕
+
+<br>
+
+## Stack Based Buffer Overflow
+
+### hint:
+
+```C
+#define admin_levels "root"
+
+//---------------------
+    char level[14] = "user";
+    char name[14];
+    char answer[14];
+
+    printf("What is your name: ");
+    scanf("%s", name);
+
+    printf("alright %s what is answer of 1 + 1 ?\n", name);
+    scanf("%s", answer);
+```
+
+<br>
+
+### Play
+
+<br>
+
+1. get file
+
+```bash
+wget "https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/binary-exploitation/stack_based_buff_overflow.c"
+```
+
+2. or download it manual [Link in here](https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/binary-exploitation/stack_based_buff_overflow.c)
+
+3. compile :
+
+```bash
+g++ stack_based_buff_overflow.c -o play
+```
+
+4. play :
+
+```bash
+./play
+```
+
+<br>
+<br>
+<br>
+<br>
+
+# Soon
