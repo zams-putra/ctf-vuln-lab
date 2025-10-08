@@ -208,4 +208,70 @@ g++ stack_based_buff_overflow.c -o play
 <br>
 <br>
 
+# 4. Reverse Engineering - Lab 🧩
+
+<br>
+
+## Static Analysis - What is my PIN☎️
+
+<br>
+
+### Play
+
+<br>
+
+1. get file
+
+```bash
+wget "https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/reverse-engineering/pin.c"
+```
+
+2. or download it manual [Link in here](https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/reverse-engineering/pin.c)
+
+3. compile :
+
+```bash
+gcc pin.c -o pin
+```
+
+4. play :
+
+```bash
+./pin
+```
+
+<br>
+<br>
+
+## Static Analysis - What is my Password🔐
+
+<br>
+
+### Play
+
+<br>
+
+1. get file
+
+```bash
+wget "https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/reverse-engineering/password.c"
+```
+
+2. or download it manual [Link in here](https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/reverse-engineering/password.c)
+
+3. compile :
+
+```bash
+gcc password.c -o password
+```
+
+4. play :
+
+```bash
+./password
+```
+
+<br>
+<br>
+
 # Soon
