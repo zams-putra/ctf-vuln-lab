@@ -158,7 +158,7 @@ http://localhost:5000
 
 <br>
 
-## Stack Based Buffer Overflow
+## Buffer Overflow - Stack Based 
 
 ### hint:
 
@@ -195,6 +195,53 @@ wget "https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/
 
 ```bash
 g++ stack_based_buff_overflow.c -o play
+```
+
+4. play :
+
+```bash
+./play
+```
+
+<br>
+<br>
+<br>
+<br>
+
+## Buffer Overflow - Stack Variable Overwrite
+
+### hint:
+
+```C
+    int goal = 7;
+    char buffer[16];
+    gets(&buffer);
+    if(goal == 0xf0f0fafa) {
+        win
+    }
+    else {
+        lose
+    }
+```
+
+<br>
+
+### Play
+
+<br>
+
+1. get file
+
+```bash
+wget "https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/binary-exploitation/f0f0fafa.c"
+```
+
+2. or download it manual [Link in here](https://raw.githubusercontent.com/zams-putra/ctf-vuln-lab/refs/heads/main/binary-exploitation/f0f0fafa.c)
+
+3. compile :
+
+```bash
+gcc -no-pie -fno-pic -fno-stack-protector -fno-builtin -Wno-implicit-function-declaration f0f0fafa.c -o play 
 ```
 
 4. play :
