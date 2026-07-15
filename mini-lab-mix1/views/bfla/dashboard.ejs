@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      :root {
+        --gelap: #2c3333;
+        --cerah: #e7f6f2;
+        --primary: #a5c9ca;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        gap: 3rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        padding: 1rem;
+      }
+
+      h1 {
+        background: linear-gradient(to right, var(--primary), var(--gelap));
+        color: transparent;
+        -webkit-background-clip: text;
+      }
+      .logout {
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+      }
+      .recipebtn {
+        background-color: var(--primary);
+        color: var(--gelap);
+        position: absolute;
+        top: 2rem;
+        right: 15rem;
+      }
+
+      button {
+        padding: 1rem 1.5rem;
+        background-color: rgb(197, 27, 27);
+        color: var(--primary);
+        border: none;
+        border-radius: 0.2rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: var(--cerah);
+        color: #1e2022;
+      }
+
+      .box {
+        width: 30vw;
+        min-height: 50vh;
+        display: flex;
+
+        gap: 2rem;
+        font-size: small;
+        flex-direction: column;
+        border-radius: 0.5rem;
+
+        animation: fade 5s ease;
+        background-color: var(--primary);
+        padding: 2rem;
+      }
+
+      .recipe {
+        width: full;
+        height: 8rem;
+        border-radius: 0.2rem;
+        background-color: var(--gelap);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/bfla/logout"><button class="logout">Logout</button></a>
+    <a href="/bfla/create-recipe"
+      ><button class="recipebtn">Create recipe</button></a
+    >
+
+    <h1>Welcome name</h1>
+    <div class="box">
+      <% for(const recipe of recipes) { %>
+      <div class="recipe">
+        <p><%= recipe.name %></p>
+        <p><%= recipe.description %></p>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

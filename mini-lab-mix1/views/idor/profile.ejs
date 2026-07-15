@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      :root {
+        --gelap: #27374d;
+        --cerah: #dde6ed;
+      }
+
+      body {
+        background-color: var(--gelap);
+        color: var(--cerah);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: monospace;
+      }
+
+      h1 {
+        background: linear-gradient(to right, skyblue, var(--cerah));
+        color: transparent;
+        background-clip: text;
+      }
+
+      .profile {
+        width: 30vw;
+        height: 40vh;
+        display: flex;
+        margin-top: 5rem;
+        flex-direction: column;
+        gap: 0.2rem;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1rem;
+      }
+
+      img {
+        width: 12rem;
+        height: 12rem;
+        border-radius: 0.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome home <%= name %></h1>
+    <div class="profile">
+      <img src="<%= img %>" alt="<%= name %>" />
+      <p>Name: <%= name %></p>
+      <p>Identity Number: <%= identity_number%></p>
+      <p>City: <%= city %></p>
+    </div>
+  </body>
+</html>

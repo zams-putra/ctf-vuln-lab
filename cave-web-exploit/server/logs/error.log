@@ -1,0 +1,6 @@
+[2024-01-01 10:00:00] ERROR Failed to connect to backup server, retrying...
+[2024-01-01 10:00:02] ERROR Retry 1/3 failed
+[2024-01-01 10:00:04] ERROR Retry 2/3 failed
+[2024-01-01 10:00:06] INFO  Fallback to local backup at /home/tribe_leader/.backup/
+[2024-01-01 10:15:07] ERROR Too many failed login attempts from 192.168.1.100
+[2024-01-01 10:20:00] ERROR DB write failed: disk quota exceeded

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vuln XSS</title>
+    <style>
+      :root {
+        --gelap: #2b2e4a;
+        --cerah: #f5f7f8;
+        --primary: #f4ce14;
+      }
+      body {
+        background-color: var(--gelap);
+        color: var(--cerah);
+        height: 100vh;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      form,
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      form {
+        border: 0.1rem solid var(--primary);
+        padding: 1rem 3rem;
+        border-radius: 0.2rem;
+        gap: 1rem;
+      }
+      button {
+        background-color: var(--cerah);
+        color: var(--gelap);
+        padding: 0.2rem 1.2rem;
+        transition: all ease 0.3s;
+        border-radius: 0.2rem;
+      }
+      button:hover {
+        background-color: var(--primary);
+      }
+
+      a {
+        color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Profile Page</h1>
+    <p>Hello <%= username %></p>
+
+    <form action="/xss/quotes" method="post">
+      <label for="quote">Quotes for today</label>
+      <input type="text" id="quote" name="quote" />
+      <button>Send</button>
+    </form>
+
+    <ul>
+      <% for( const quote of quotes ) { %>
+      <li><%- quote.author %> - <%- quote.quote %></li>
+      <% } %>
+    </ul>
+  </body>
+
+  <script>
+    const passwd = document.querySelector("#password");
+    const showPasswd = document.querySelector("#show_passwd");
+
+    showPasswd.addEventListener("input", (e) => {
+      if (e.target.checked) {
+        passwd.setAttribute("type", "text");
+      } else {
+        passwd.setAttribute("type", "password");
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,245 @@
+.page {
+  flex: 1;
+  padding: 48px 24px;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminBadge {
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid #f5c6c6;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Toolbar */
+.toolbar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fileLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.filePrefix {
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: var(--surface-hover);
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.fileInput {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.fileInput:focus {
+  outline: none;
+}
+
+.loadBtn {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  background: var(--accent);
+  color: var(--accent-text);
+  border-left: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.loadBtn:hover {
+  background: var(--accent-hover);
+}
+
+.quickLinks {
+  display: flex;
+  gap: 8px;
+}
+
+.quickBtn {
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  background: transparent;
+  transition: all 0.15s;
+}
+
+.quickBtn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.quickBtnActive {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+/* Log box */
+.logBox {
+  background: #111;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logTitle {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,0.5);
+}
+
+.logLines {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,0.3);
+}
+
+.logBody {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+.logContent {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #d4d4d4;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.logMuted {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(255,255,255,0.25);
+}
+
+.logError {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #e06c75;
+}
+
+/* Info row */
+.infoRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.infoCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.infoValue {
+  font-size: 15px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .infoRow { grid-template-columns: 1fr; }
+  .filePrefix { display: none; }
+}

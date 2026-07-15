@@ -1,0 +1,10 @@
+[2024-01-01 10:00:01] INFO  Server started on :8080
+[2024-01-01 10:00:03] INFO  Database connected successfully
+[2024-01-01 10:00:05] INFO  Admin token generated
+[2024-01-01 10:01:00] INFO  User registered: guest01
+[2024-01-01 10:02:14] INFO  User logged in: guest01
+[2024-01-01 10:05:33] INFO  Backup completed to /home/tribe_leader/.backup/db.sqlite
+[2024-01-01 10:15:00] WARN  Failed login attempt for user: admin
+[2024-01-01 10:15:03] WARN  Failed login attempt for user: admin
+[2024-01-01 10:15:07] WARN  Failed login attempt for user: admin
+[2024-01-01 10:30:00] INFO  Bot started visiting comment page

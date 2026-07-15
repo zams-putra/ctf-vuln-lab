@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Cave Roasting API
+  version: 1.0.0
+  description: API for my lab
+
+servers:
+  - url: http://127.0.0.1:8080
+
+paths:
+  /register:
+    post:
+      summary: Register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "201":
+          description: Berhasil register
+        "400":
+          description: Error
+
+  /login:
+    post:
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login berhasil (set cookie JWT)
+        "401":
+          description: Unauthorized
+
+  /roasting:
+    get:
+      summary: Get semua roasting
+      responses:
+        "200":
+          description: List roasting
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    roaster:
+                      type: string
+                    comment:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+
+    post:
+      summary: Tambah roasting (butuh auth cookie)
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [comment]
+              properties:
+                comment:
+                  type: string
+      responses:
+        "201":
+          description: Berhasil tambah
+        "401":
+          description: Unauthorized
+
+  /admin/logs:
+    get:
+      summary: Get admin logs
+      security:
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Logs
+        "401":
+          description: Unauthorized
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: kuki

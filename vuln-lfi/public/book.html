@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book detail</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown.min.css"
+    />
+  </head>
+  <body>
+    <h1>Happy Reading !</h1>
+
+    <div id="content" class="markdown-body">Load..</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      console.log(marked);
+      const param = new URLSearchParams(window.location.search);
+      const book = param.get("book");
+      const host = window.location.hostname;
+      const port = 5000;
+      const url = `http://${host}:${port}/view?book=${book}`;
+      if (book) {
+        fetch(url)
+          .then((res) => res.text())
+          .then((text) => {
+            document.querySelector("#content").innerHTML = marked.parse(text);
+          })
+          .catch(
+            (err) =>
+              (document.querySelector("#content").innerHTML =
+                "Error fetch" + err)
+          );
+      } else {
+        document.querySelector("#content").innerHTML = "Books not found";
+      }
+    </script>
+  </body>
+</html>

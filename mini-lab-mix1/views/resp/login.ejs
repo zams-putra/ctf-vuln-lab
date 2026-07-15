@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      :root {
+        --gelap: #222831;
+        --cerah: #eeeeee;
+        --primary: #ffd369;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      h1 {
+        background: linear-gradient(to right, var(--primary), var(--gelap));
+        color: transparent;
+        -webkit-background-clip: text;
+      }
+
+      form {
+        display: flex;
+        width: 20vw;
+        height: 30vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        background-color: var(--primary);
+        color: var(--gelap);
+      }
+
+      form div {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      form div input {
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+        border: none;
+        background-color: var(--cerah);
+        color: var(--gelap);
+      }
+
+      form button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
+        border: none;
+        background-color: var(--gelap);
+        color: var(--cerah);
+        font-weight: bold;
+        transition: all ease 0.3s;
+      }
+
+      form button:hover {
+        background-color: var(--cerah);
+        color: var(--gelap);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form>
+      <div>
+        <label for="username">Username</label>
+        <input required type="text" id="username" name="username" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input required type="password" id="password" name="password" />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+
+        const response = await fetch("http://localhost:5000/resp/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.status === 200) {
+          const responseSession = await fetch(
+            "http://localhost:5000/resp/get-session"
+          );
+
+          if (responseSession.ok) {
+            window.location.href = `/resp/dashboard`;
+          }
+        } else {
+          alert("Invalid user");
+        }
+      });
+    </script>
+  </body>
+</html>
