@@ -1,0 +1,73 @@
+1. structure folder :
+- cmd: buat ya main.go nya lah
+- configs: buat config misal addr nya portnya
+- internals:
+> /handlers: buat handler2 nya , misal user handler, testing handler
+> /services: service2 pada handler 
+> /models: buat model db nya, misal uname nya str, password nya str, id int 
+> /repositories: buat fungsi2 dari db, misal get data dari db, query, dll disini
+
+
+2. making db table and data with seed  :
+- implement sqlite3 in go, go get package sqlite3
+> go get github.com/mattn/go-sqlite3
+> untuk buat table sama insert datanya bebas, bisa lewat cmd.sql atau ga cli dari main.go di seed
+- issue path db
+> di main.go file seed nya awalnya ../../../data.db
+> padahal mah ./data.db udah bisa njir
+> tergantung run nya dimana keknya
+- implement hash di sqlite3
+> jangan raw query dari file .sql kalau mau hash passwordnya
+> cari di gugel bcrypt golang, nah nanti masuk webnya ada copy path di kiri atas
+> go get aja langsung ke path nya: go get golang.org/x/crypto/bcrypt
+- run seed :
+> go run .\cmd\seed\create_table\main.go
+> go run .\cmd\seed\insert_data\main.go
+
+
+3. implement SQLI login page (known username case) :
+- peak_master' --
+- udah ada di bagian user repository, disitu query nya disusun vuln nya disitu
+- kasih hardening dikit biar gabisa inject spasi " "
+- cek di user_service:
+blacklist := []string{" "}
+for _, v := range blacklist {
+    if strings.Contains(username, v) {
+        return nil, fmt.Errorf("Nice try, nt nt")
+    }
+}
+
+4. implement jwt attack :
+- install 
+- go get github.com/golang-jwt/jwt/v5
+- nanti set secret jwt nya -> dragonballz, ada di rockyou
+- nanti kalau login success dapet jwt nya misal :
+- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJwZWFrX21hc3RlciIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzcxNjI1MzA0fQ.Zcu0NdYqRywFm4pMHwZ6CCdW6W9WzFlJCv2O0WsLugU
+- nah kalau udah ketauan algo nya HS256, dia simetris cuman butuh 1 secret aja
+- hashcat --identify [jwt di atas]
+- hashcat -m 16500 -a 0 hash /usr/share/wordlists/rockyou.txt 
+- pergi ke jwt.io, decode dulu lalu ke encoder, ubah payload dan sign jwt secretnya
+- inject aja setelah itu
+- and redirect to dashboard with privilege admin deh
+
+5. implement idor :
+- biar nanti user nya tau endpoint dimana command injection berada
+- di user_repository tambahin implement dari findbyid
+- and implement di user_service tambahin getbyid
+- and inject new data, cek di seeds/insert_data/cmd.sql
+
+6. implement command injection :
+- cek di admin_handler
+- nanti inject payload by json gitu -> {"host":"127.0.0.1 & whoami"}
+
+
+7. CORS implement :
+- karna boot2root beda host, jadi implementt cors 
+- cek di middleware ada
+
+
+8. Build go backend into binary / exe :
+- set CGO_ENABLED=1
+- go build -o peak_server .\cmd\app\main.go
+- go build -o peak_server.exe .\cmd\app\main.go  -> karna nanti environment nya di windows jadi file exe
+- data.db jangan lupa nanti di include samping sampingan

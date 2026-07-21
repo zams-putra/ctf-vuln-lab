@@ -29,6 +29,34 @@ docker compose up --build
 curl 127.0.0.1:80
 ```
 
+## 2 - Peak Web Exploitation
+
+Attack Surface
+
+- SQL Injection
+- JWT Attack
+- Password Cracking
+- IDOR
+- Command Injection
+
+
+## How to played
+- download resource
+- https://github.com/zams-putra/ctf-vuln-lab/releases/download/web-exploit-2/peak-web-exploit.zip
+- extract the zip 
+- go to the file 
+```bash
+cd peak-web-exploit
+```
+- run docker-compose
+```bash
+docker compose up --build
+```
+- access the lab 
+```bash
+curl 127.0.0.1:80
+```
+
 
 <br>
 <br>

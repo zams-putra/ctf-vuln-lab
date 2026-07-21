@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: Peak API
+  version: 1.0.0
+  description: Peak CTF Machine API
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /test:
+    get:
+      summary: Testing endpoint
+      tags: [misc]
+      responses:
+        '200':
+          description: Server is running
+
+  /login:
+    post:
+      summary: Login user
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: peak_master
+                password:
+                  type: string
+                  example: password123
+      responses:
+        '200':
+          description: Login success, JWT disimpan di cookie
+        '401':
+          description: Invalid credentials
+
+  /logout:
+    post:
+      summary: Logout user
+      tags: [auth]
+      responses:
+        '200':
+          description: Logout success
+
+  /me:
+    get:
+      summary: Get current user info
+      tags: [user]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Current user data
+        '401':
+          description: Unauthorized
+
+  /admin:
+    get:
+      summary: Admin dashboard
+      tags: [admin]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Admin only page
+        '403':
+          description: Forbidden
+
+  /admin/users/{id}:
+    get:
+      summary: Get user by ID
+      tags: [admin]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: User data
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found
+
+  /admin/ping:
+    post:
+      summary: Ping a host (admin only)
+      tags: [admin]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                host:
+                  type: string
+                  example: 127.0.0.1
+      responses:
+        '200':
+          description: Ping result
+        '403':
+          description: Forbidden
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: jwt_token

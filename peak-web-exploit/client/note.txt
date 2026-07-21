@@ -1,0 +1,177 @@
+1. setup react :
+- npm create vite@latest peak-client -- --template react
+- setup tailwindcss in vite
+> npm install tailwindcss @tailwindcss/vite
+> ke vite.config.js
+- setup motion 
+> npm install motion
+> import motion/react
+
+2. akses luar mesin :
+- kalau mau akses vite dari luar mesin pas develop pake ini 
+> npm run dev -- --host
+> di fetch nya set ke IP, biar nanti cors nya ga bermasalah backend ke 127.0.0.1
+> peak_master'/**/-- atau gini juga bisa peak_master'--
+- ribet bangett anjir lah
+> antara bearer sama cookie, di api bearer enak ga cors cors di cookie masih cors cors
+- set proxy, di vite.config.js
+> biar localhost:8080 nya bisa di ganti /api aja biar enak fetchnya
+- set react-router-dom, biar bisa routing misal /dashboard dll
+- setup suara rpg percakapan 
+const ctx = new AudioContext();
+const osc = ctx.createOscillator();  // pembuat gelombang suara
+const gain = ctx.createGain();        // pengatur volume
+osc.type = "square";                  // tipe gelombang — square paling "retro/pixel"
+osc.frequency.setValueAtTime(520 + Math.random() * 80, ctx.currentTime); // frekuensi Hz
+gain.gain.setValueAtTime(0.04, ctx.currentTime);                          // volume kecil
+gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.06);  // fade out cepat
+osc.start();
+osc.stop(ctx.currentTime + 0.06); // bunyi cuma 60ms
+
+
+3. setup :
+- setup authorization dari App.jsx :
+export default function App() {
+  const [userData, setUserData] = useState(undefined);
+  useEffect(() => {
+    fetch("/api/me", { credentials: "include" })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => setUserData(data))
+      .catch(() => setUserData(null));
+  }, []);
+
+  if (userData === undefined) return (
+    <div style={{
+      minHeight: "100vh", background: "#060606",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: "'Rajdhani', monospace", color: "#dc2626",
+      letterSpacing: "0.3em", fontSize: 12,
+    }}>
+      <span style={{ animation: "pulse 1s ease-in-out infinite" }}>LOADING...</span>
+      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }`}</style>
+    </div>
+  );
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"
+          element={userData ? <Navigate to="/dashboard" /> : <Home setUserData={setUserData} />} />
+        <Route path="/secret" element={<Secret />} />
+        <Route path="/dashboard"
+          element={userData
+            ? <Dashboard userData={userData} setUserData={setUserData} />
+            : <Navigate to="/" />} />
+        <Route path="/profile/:id"
+          element={userData ? <Profile userData={userData} /> : <Navigate to="/" />} />
+        <Route path="/profile"
+          element={userData ? <Navigate to={`/profile/${userData.id}`} /> : <Navigate to="/" />} />
+        <Route path="/admin/ping"
+          element={
+            !userData
+              ? <Navigate to="/" />
+              : userData.role !== "admin"
+              ? <Navigate to="/dashboard" />
+              : <AdminPanel userData={userData} />
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+- setup login daru Home.jsx :
+const checkSession = async () => {
+  const res = await fetch("/api/me", { credentials: "include" });
+  if (!res.ok) return null;
+  return await res.json();
+};
+
+const handleLogin = async (e) => {
+e.preventDefault();
+setLoading(true);
+setError("");
+try {
+    const res = await fetch("/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ username, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) { setError(data.message || "Access denied"); setLoading(false); return; }
+    const session = await checkSession();
+    setUserData(session);
+    navigate("/dashboard");
+} catch {
+    setError("Connection failed.");
+}
+setLoading(false);
+};
+
+- setup privilege data profile dari Profile.jsx :
+useEffect(() => {
+if (!targetId) return;
+setLoading(true);
+setError("");
+setProfileData(null);
+
+fetch(`/api/admin/users/${targetId}`, { credentials: "include" })
+    .then(res => res.json().then(data => ({ ok: res.ok, data })))
+    .then(({ ok, data }) => {
+    if (!ok) setError(data.message || "User not found.");
+    else setProfileData(data);
+    })
+    .catch(() => setError("Connection failed."))
+    .finally(() => setLoading(false));
+}, [targetId]);
+
+- setup ping and fetch user data in AdminPanel.jsx :
+useEffect(() => {
+if (outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight;
+}, [pingOut, history]);
+
+const fetchUser = async () => {
+if (!userId) return;
+setLookupErr("");
+setLookupData(null);
+setLookupLoading(true);
+try {
+    const res = await fetch(`/api/admin/users/${userId}`, { credentials: "include" });
+    const data = await res.json();
+    if (!res.ok) setLookupErr(data.message || "User not found.");
+    else setLookupData(data);
+} catch {
+    setLookupErr("Connection failed.");
+}
+setLookupLoading(false);
+};
+
+const doPing = async () => {
+if (!host || pingLoading) return;
+setPingErr("");
+setPingOut("");
+setPingLoading(true);
+const entry = { host, time: new Date().toLocaleTimeString("id-ID"), output: null, err: null };
+try {
+    const res = await fetch("/api/admin/ping", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ host }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+    entry.err = data.message || "Command failed.";
+    setPingErr(entry.err);
+    } else {
+    entry.output = data.output;
+    setPingOut(data.output);
+    }
+} catch {
+    entry.err = "Connection failed.";
+    setPingErr(entry.err);
+}
+setHistory(h => [entry, ...h].slice(0, 20));
+setPingLoading(false);
+};
